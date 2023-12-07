@@ -4,7 +4,9 @@ import org.example.pojo.User;
 import org.example.utils.MybatisUtils;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMapperTest {
     @Test
@@ -113,6 +115,27 @@ public class UserMapperTest {
             System.out.println(user);
         }
 
+        //关闭SqlSession
+        sqlSession.close();
+    }
+
+    @Test
+    public void addUser2(){
+        //第一步：获得SqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("userid",5);
+        map.put("name", "mapTest");
+        map.put("passWord","2222333");
+
+        int res = mapper.addUser2(map);
+        if(res>0){
+            System.out.println("插入成功！！");
+        }
         //关闭SqlSession
         sqlSession.close();
     }

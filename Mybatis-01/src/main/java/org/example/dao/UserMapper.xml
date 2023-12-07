@@ -5,6 +5,17 @@
 <!-- namespace=绑定一个对应的Dao/Mapper接口 -->
 <mapper namespace="org.example.dao.UserMapper">
 
+<!--    表的字段需要和对象的属性名一一对应-->
+<!--    可以通过as语句，或者resultMap标签进行解决-->
+<!--    &lt;!&ndash; 结果集映射 &ndash;&gt;-->
+<!--    <resultMap id="userMap" type="User">-->
+<!--        &lt;!&ndash; column数据库中的字段，property实体类中的属性 &ndash;&gt;-->
+<!--        <result column="id" property="id"/>-->
+<!--        <result column="name" property="name"/>-->
+<!--        <result column="pwd" property="password"/>-->
+<!--    </resultMap>-->
+
+
     <!--select查询语句-->
     <select id="getUserList" resultType="org.example.pojo.User">
         select * from mybatis.user;
@@ -31,5 +42,11 @@
     <select id="getUserLike" resultType="org.example.pojo.User">
         select * from mybatis.user where name like "%"#{value}"%"
     </select>
+
+    <!--    除了通过对象属性获取参数，还能使用更加通用的map对象来传入参数-->
+    <!-- 对象中的属性，可以直接取出来传递map的key -->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id, name, pwd) values (#{userid}, #{name}, #{passWord});
+    </insert>
 
 </mapper>

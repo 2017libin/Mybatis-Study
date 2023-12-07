@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+
+    <!-- 1. 从引入外部文件导入属性  -->
+    <properties resource="db.properties">
+<!--        自定义属性，有同名属性优先使用外部文件的属性 -->
+        <property name="username" value="test"/>
+        <property name="pwd" value="test"/>
+    </properties>
+
+    <!-- 2. 可以给实体类起别名 -->
+    <typeAliases>
+        <typeAlias type="org.example.pojo.User" alias="User"/>
+        <!-- 给整个pojo包下的实体类取别名，别名默认为类名 -->
+        <!-- 如果需要修改为其他别名，则需要通过Alias注解实现 -->
+        <package name="org.example.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+<!--            POOLED表示使用连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--  每一个Mapper.xml都需要在mybatis核心配置文件中注册！  -->
+    <mappers>
+        <mapper resource="org/example/dao/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
