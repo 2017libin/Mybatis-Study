@@ -11,14 +11,14 @@ import java.util.Map;
 public class UserMapperTest {
     @Test
     public void test(){
-        //第一步：获得SqlSession对象
+        // 第一步：获得SqlSession对象
         SqlSession sqlSession = MybatisUtils.getSqlSession();
 
-        //方式一：getMapper
+        // 方式一：getMapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = userMapper.getUserList();
 
-        //方式二：不推荐使用！！！
+        // 方式二：不推荐使用！！！
 //        List<User> userList = sqlSession.selectList("com.github.dao.UserDao.getUserList");
 
 
