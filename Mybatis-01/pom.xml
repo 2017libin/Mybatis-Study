@@ -17,4 +17,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <resources>
+            <resource>
+                <!-- 打包上src/main/java下的所有xml文件 -->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!-- 任意目录下的*.xml-->
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <!-- 打包上src/main/java下的所有文件，不止xml -->
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
 </project>
