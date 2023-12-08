@@ -24,4 +24,4 @@
 4. set标签：生成set语句
 5. where标签：生成where语句
 6. sql标签：可共用的sql片段，通过include标签进行导入
-7. 
+7. foreach标签：生成保护多个参数的sql语句
